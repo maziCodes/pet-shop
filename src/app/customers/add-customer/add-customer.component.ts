@@ -26,6 +26,8 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
     {dayOfWeek: 'Zo', startTime: '', endTime: '',},
   ];
   stop$ = new Subject();
+  pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  private toastrId: number;
 
 
   constructor(
@@ -48,7 +50,7 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
       addressTwo: ['', Validators.required],
       postCode: ['', Validators.required],
       tel: [''],
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(this.pattern)])],
       openingHours: this.openingHoursForm
     });
   }
@@ -63,9 +65,9 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
   }
 
   saveCustomer() {
-    console.log(this.form)
+    this.toastr.clear(this.toastrId)
     if (this.form.invalid) {
-      this.toastr.error(  `Alstublieft, vullen alle verplicht velden gemarkeerd met *`)
+      this.toastrId = this.toastr.error(  `Alstublieft, vullen alle verplicht velden gemarkeerd met *`).toastId;
       return;
     }
     const newCustomer = this.form.value;
@@ -81,7 +83,7 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
     this.pageManagerService.setCustomer(saveCustomer)
     this.pageManagerService.customers$.next(saveCustomer);
     this.form.reset();
-    this.toastr.success('Klant succesvol toegevoegd')
+    this.toastrId = this.toastr.success('Klant succesvol toegevoegd').toastId
   }
 
   back() {
