@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PageManagerService} from "../../services/page-manager.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -24,19 +25,18 @@ export class NavBarComponent implements OnInit {
     return this._navbarOpen;
   }
 
-  @Input() set title(value: string) {
-    this._title = value;
-  }
-  get title() {
-    return this._title;
-  }
-
   @Output() emitToggleSideBar: EventEmitter<any> = new EventEmitter<any>()
   @Output() emitToggleNavBar: EventEmitter<any> = new EventEmitter<any>()
 
-  constructor() { }
+  constructor(
+    private pageMangerService: PageManagerService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  get title () {
+    return this.pageMangerService.title;
   }
 
   toggleSidebar() {

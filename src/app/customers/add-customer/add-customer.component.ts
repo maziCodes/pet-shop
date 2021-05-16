@@ -4,6 +4,8 @@ import {DayOfWeek} from "../../models/dayOfWeek";
 import {Subject} from "rxjs";
 import {SideBarComponent} from "../../layout/side-bar/side-bar.component";
 import {Location} from "@angular/common";
+import {PageManagerService} from "../../services/page-manager.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-customer',
@@ -28,12 +30,15 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private location: Location
+    private location: Location,
+    private pageManagerService: PageManagerService,
+    private toastr: ToastrService
   ) {
 
   }
 
   ngOnInit() {
+    this.pageManagerService.title = 'infofiche Klant';
     this.openingHoursForm = new FormArray([]);
     this.buildOpeningHoursForm();
 
@@ -43,7 +48,7 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
       addressTwo: ['', Validators.required],
       postCode: ['', Validators.required],
       tel: [''],
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       openingHours: this.openingHoursForm
     });
   }
@@ -58,10 +63,11 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
   }
 
   saveCustomer() {
-    // if (this.form.invalid) {
-    //   alert('Please, fill all required fields marked with *')
-    //   return;
-    // }
+    console.log(this.form)
+    if (this.form.invalid) {
+      this.toastr.error(  `Alstublieft, vullen alle verplicht velden gemarkeerd met *`)
+      return;
+    }
     const newCustomer = this.form.value;
 
     newCustomer.openingHours.forEach( v => {
@@ -71,6 +77,11 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
       v.startTime = date.toString();
     })
 
+    const saveCustomer = [...this.pageManagerService.customers$.getValue(), newCustomer];
+    this.pageManagerService.setCustomer(saveCustomer)
+    this.pageManagerService.customers$.next(saveCustomer);
+    this.form.reset();
+    this.toastr.success('Klant succesvol toegevoegd')
   }
 
   back() {
