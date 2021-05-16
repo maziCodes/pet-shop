@@ -29,7 +29,7 @@ export class FilterCustomersComponent implements OnInit {
       .subscribe( v => {
         if (v) {
           this.filteredCustomers$.next(
-            customers().filter( c => c.name.includes(v))
+            customers().filter( c => c.name.toLowerCase().includes(v.toLowerCase()))
           );
         } else {
           this.filteredCustomers$.next([]);
