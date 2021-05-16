@@ -1,8 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {DayOfWeek} from "./models/dayOfWeek";
-import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {Component, OnInit} from '@angular/core';;
 
 @Component({
   selector: 'app-root',
@@ -10,7 +6,6 @@ import {Subject} from "rxjs";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'Klanten';
 
   navbarOpen = false;
   sidebarOpen = false;
