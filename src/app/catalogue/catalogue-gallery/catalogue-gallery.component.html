@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 mb-5" *ngFor="let item of [].constructor(8); let i = index;">
+      <div class="item">
+        <div class="variants w-50">
+          <div class="variant-1">0</div>
+          <div class="variant-2 ml-1 mr-1">0</div>
+          <div class="variant-3">23</div>
+        </div>
+        <div class="price w-25">
+          <span>{{579 | currency:'€'}}</span>
+        </div>
+        <div class="text-center">
+          <img src="../assets/img/item-{{i}}.png" class="img-fluid item-img" alt="item">
+          <div class="item-info">
+            <div class="item-measurement text-muted">S 61 x 43 x 20 cm</div>
+            <div class="item-name text-muted">Grijs TARSO1020</div>
+          </div>
+          <div class="toggle-item-count d-flex justify-content-around">
+            <div><i class="fa fa-minus-circle"></i></div>
+            <div><span>0</span></div>
+            <div><i class="fa fa-plus-circle"></i></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
