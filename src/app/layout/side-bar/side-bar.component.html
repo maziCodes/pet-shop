@@ -1,0 +1,30 @@
+<div class=" border-right" id="sidebar-wrapper">
+  <div class="sidebar-heading bg-light">
+    <img class="img-fluid" src="../assets/img/logo.png" alt="logo">
+
+  </div>
+  <div class="side-bar-label bg-light">
+    <div class="pt-5">
+      <span>Tom</span>
+      <span>&</span>
+      <span>Co</span>
+
+    </div>
+
+  </div>
+  <div class="list-group list-group-flush">
+    <a [routerLink]="['customer/search']" class="pointer list-group-item list-group-item-action border-0 side-bar-items" href="#">
+      <i class="fa fa-users fa-2x d-block"></i>
+      Klanten
+    </a>
+    <a class="list-group-item list-group-item-action border-0 side-bar-items" href="#">
+      <i class="fa fa-book fa-2x d-block"></i>
+      Salesbook</a>
+    <a class="list-group-item list-group-item-action border-0 side-bar-items" href="#">
+      <i class="fa fa-shopping-basket fa-2x d-block"></i>
+      BestSelling</a>
+    <a [routerLink]="['/catalogue/gallery']" class="pointer list-group-item list-group-item-action border-0 side-bar-items" href="#">
+      <i class="fa fa-cubes fa-2x d-block"></i>
+      Items</a>
+  </div>
+</div>
