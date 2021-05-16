@@ -1,0 +1,127 @@
+<div class="container-fluid">
+  <div class="col-md-8 col-12">
+    <div class="card shadow border-0">
+      <div class="card-body">
+        <div class="d-flex justify-content-between mt-3 mb-4">
+          <div class="d-flex justify-content-between w-25">
+            <div>
+              <h4>Nieuwe Klant</h4>
+            </div>
+            <div>
+              <i class="fa fa-arrow-left fa-2x bg-success text-white back-btn pointer" (click)="back()"></i>
+            </div>
+          </div>
+
+          <div>
+            <i class="fa fa-times fa-3x text-muted pointer" (click)="back()"></i>
+          </div>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="saveCustomer()">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-1 form-icons-container">
+                  <label class="required pr-1"></label>
+                  <label for="name">
+                    <i class="fa fa-user form-icons user-icon"></i>
+                  </label>
+                </div>
+                <div class="col-md-6 col-10">
+                  <div class="row">
+                    <div class="col-12 ml-3 ml-md-0">
+                      <input type="text" placeholder="Naam" id="name" class="w-100">
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-5">
+                <div class="col-1 form-icons-container">
+                  <label class="required pr-1"></label>
+                  <label for="addressOne">
+                    <i class="fa fa-map-marker form-icons map-marker-icon"></i>
+                  </label>
+                </div>
+                <div class="col-md-6 col-10">
+                  <div class="row">
+                    <div class="col-12 mb-3 ml-3 ml-md-0">
+                      <input required type="text" placeholder="Adreslijn1" id="addressOne" class="w-100">
+                    </div>
+                    <div class="col-12 mb-3 ml-3 ml-md-0">
+                      <input type="text" placeholder="Adreslijn1" id="addressTwo" class="w-100">
+                    </div>
+                    <div class="col-12 mb-3 ml-3 ml-md-0">
+                      <input type="text"  placeholder="Postcode - Gemeente"  id="postCode" class="w-100">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="row mt-5 mb-3">
+                <div class="col-1 form-icons-container">
+                  <label class="" for="tel">
+                    <i class="fa fa-phone form-icons phone-icon"></i>
+                  </label>
+                </div>
+                <div class="col-md-6 col-10">
+                  <div class="row">
+                    <div class="col-12 ml-3 ml-md-0">
+                      <input type="password" id="tel"  placeholder="Tel"  inputmode="numeric" class="w-100">
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-1 form-icons-container">
+                <label class="required pr-1"></label>
+                  <label for="email">
+                    <i class="fa fa-envelope form-icons email-icon"></i>
+                  </label>
+                </div>
+                <div class="col-md-6 col-10">
+                  <div class="row">
+                    <div class="col-12 ml-3 ml-md-0">
+                      <input type="text" id="email"  placeholder="email"  class="w-100">
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-md-4 mt-5 mt-md-0">
+              <div class="row">
+                <div class="col-1 col-md-2 form-icons-container">
+                  <i class="fa fa-clock-o form-icons clock-icon"></i>
+                </div>
+                <div class="col-10">
+                  <div class="row">
+                    <div class="col-12 ml-3 ml-md-0 mb-4" *ngFor="let control of openingHoursForm.controls; let i = index;">
+                      <ng-container [formGroup]="control">
+                        <label for="{{'day'+i}}" class="pr-3 required">{{daysAndTime[i].dayOfWeek}}</label>
+                        <input formControlName="startTime" type="time" id="{{'day'+i}}" class="w-75">
+                      </ng-container>
+                    </div>
+                    <div class="col-11 text-center">
+                      <button type="submit" class="btn btn-outline-success w-75 font-weight-bold py-3 save-btn">VOEG TOE</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

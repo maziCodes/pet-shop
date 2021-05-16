@@ -1,0 +1,33 @@
+<div class="container-fluid d-flex justify-content-center">
+  <div class="col-md-6 filter-box">
+    <div class="row">
+      <div class="col-8">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <input type="text" placeholder="Search" formControlName="name" class="form-control" id="filter-input">
+          </div>
+        </form>
+      </div>
+      <div class="col-4">
+        <i class="fa fa-plus-circle add-customer-btn fa-5x pointer" [routerLink]="['/customer/new']"></i>
+      </div>
+
+    </div>
+    <ng-container *ngIf="filteredCustomers$ | async as customers">
+      <div class="row mb-4" *ngFor="let customer of customers">
+      <div class="col-6">
+        <h4 class="font-weight-bold" style="font-size: 2.5em">{{customer.name}}</h4>
+        <span class="text-muted" style="font-size: 1.5em">{{customer.addressOne}} {{', ' + customer.addressTwo}}</span>
+      </div>
+      <div class="col-2 text-right">
+           <span  class="map-marker-container">
+            <i class="fa fa-map-marker map-marker fa-3x"></i>
+           </span>
+      </div>
+      <div class="col-4">
+        <i class="fa fa-info-circle icon-color fa-4x"></i>
+      </div>
+    </div>
+    </ng-container>
+  </div>
+</div>
