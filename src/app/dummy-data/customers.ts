@@ -8,7 +8,7 @@ export const customers = (): Customer[] => {
       name: names[i],
       addressOne: 'De Koel',
       addressTwo: 'Overpelt',
-      postalCode: '12330',
+      postCode: '12330',
       tel: '+44267889',
       email: 'info@tomandco',
       openingHours: [
