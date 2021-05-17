@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PageManagerService} from "../../services/page-manager.service";
 
 @Component({
   selector: 'app-catalogue-gallery',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogueGalleryComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private pageManagerService: PageManagerService
+) { }
 
   ngOnInit(): void {
+    this.pageManagerService.title = 'Items';
+
   }
 
 }

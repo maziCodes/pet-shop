@@ -29,7 +29,7 @@
                 <div class="col-md-6 col-10">
                   <div class="row">
                     <div class="col-12 ml-3 ml-md-0">
-                      <input type="text" placeholder="Naam" id="name" class="w-100">
+                      <input type="text" formControlName="name" placeholder="Naam" id="name" class="w-100">
                     </div>
 
                   </div>
@@ -47,13 +47,13 @@
                 <div class="col-md-6 col-10">
                   <div class="row">
                     <div class="col-12 mb-3 ml-3 ml-md-0">
-                      <input required type="text" placeholder="Adreslijn1" id="addressOne" class="w-100">
+                      <input required type="text" formControlName="addressOne" placeholder="Adreslijn1" id="addressOne" class="w-100">
                     </div>
                     <div class="col-12 mb-3 ml-3 ml-md-0">
-                      <input type="text" placeholder="Adreslijn1" id="addressTwo" class="w-100">
+                      <input type="text"  formControlName="addressTwo" placeholder="Adreslijn1" id="addressTwo" class="w-100">
                     </div>
                     <div class="col-12 mb-3 ml-3 ml-md-0">
-                      <input type="text"  placeholder="Postcode - Gemeente"  id="postCode" class="w-100">
+                      <input type="text"  formControlName="postCode"  placeholder="Postcode - Gemeente"  id="postCode" class="w-100">
                     </div>
                   </div>
 
@@ -70,7 +70,7 @@
                 <div class="col-md-6 col-10">
                   <div class="row">
                     <div class="col-12 ml-3 ml-md-0">
-                      <input type="password" id="tel"  placeholder="Tel"  inputmode="numeric" class="w-100">
+                      <input type="password" id="tel" formControlName="tel" placeholder="Tel"  inputmode="numeric" class="w-100">
                     </div>
 
                   </div>
@@ -87,7 +87,10 @@
                 <div class="col-md-6 col-10">
                   <div class="row">
                     <div class="col-12 ml-3 ml-md-0">
-                      <input type="text" id="email"  placeholder="email"  class="w-100">
+                      <input type="text" id="email" placeholder="email" formControlName="email" class="w-100">
+                      <div>
+                        <small *ngIf="form.get('email').hasError('pattern')" class="text-danger">Ongeldige email formaat</small>
+                      </div>
                     </div>
 
                   </div>

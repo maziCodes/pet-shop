@@ -4,6 +4,8 @@ import {DayOfWeek} from "../../models/dayOfWeek";
 import {Subject} from "rxjs";
 import {SideBarComponent} from "../../layout/side-bar/side-bar.component";
 import {Location} from "@angular/common";
+import {PageManagerService} from "../../services/page-manager.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-customer',
@@ -24,16 +26,21 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
     {dayOfWeek: 'Zo', startTime: '', endTime: '',},
   ];
   stop$ = new Subject();
+  pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  private toastrId: number;
 
 
   constructor(
     private fb: FormBuilder,
-    private location: Location
+    private location: Location,
+    private pageManagerService: PageManagerService,
+    private toastr: ToastrService
   ) {
 
   }
 
   ngOnInit() {
+    this.pageManagerService.title = 'infofiche Klant';
     this.openingHoursForm = new FormArray([]);
     this.buildOpeningHoursForm();
 
@@ -43,7 +50,7 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
       addressTwo: ['', Validators.required],
       postCode: ['', Validators.required],
       tel: [''],
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(this.pattern)])],
       openingHours: this.openingHoursForm
     });
   }
@@ -58,10 +65,11 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
   }
 
   saveCustomer() {
-    // if (this.form.invalid) {
-    //   alert('Please, fill all required fields marked with *')
-    //   return;
-    // }
+    this.toastr.clear(this.toastrId)
+    if (this.form.invalid) {
+      this.toastrId = this.toastr.error(  `Alstublieft, vullen alle verplicht velden gemarkeerd met *`).toastId;
+      return;
+    }
     const newCustomer = this.form.value;
 
     newCustomer.openingHours.forEach( v => {
@@ -71,6 +79,11 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
       v.startTime = date.toString();
     })
 
+    const saveCustomer = [...this.pageManagerService.customers$.getValue(), newCustomer];
+    this.pageManagerService.setCustomer(saveCustomer)
+    this.pageManagerService.customers$.next(saveCustomer);
+    this.form.reset();
+    this.toastrId = this.toastr.success('Klant succesvol toegevoegd').toastId
   }
 
   back() {
