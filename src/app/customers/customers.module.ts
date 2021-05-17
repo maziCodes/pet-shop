@@ -5,12 +5,14 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { FilterCustomersComponent } from './filter-customers/filter-customers.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 @NgModule({
   declarations: [
     FilterCustomersComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     CommonModule,
