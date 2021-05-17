@@ -185,7 +185,7 @@ body {
 
 .price {
   position: relative;
-  left: 15em;
+  left: 14em;
   bottom: .5em;
   margin-bottom: -.5em;
   border: 1px solid $lightBlueBGColor ;
@@ -223,7 +223,7 @@ body {
 
 .form-icons-container {
   display: flex;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   align-self: flex-start;
 }
@@ -288,4 +288,19 @@ label.required:after {
   color: #FF1A1A;
   font-size: 12px;
   font-weight: 400;
+}
+
+
+@media only screen and (min-width: 400px) {
+  .price {
+    left: 11em;
+  }
+
+}
+
+@media only screen and (min-width: 500px) {
+  .price {
+    left: 15em;
+  }
+
 }
