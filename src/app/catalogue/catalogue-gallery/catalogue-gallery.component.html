@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3 mb-5" *ngFor="let item of [].constructor(8); let i = index;">
+    <div class="col-md-3 mb-5" *ngFor="let item of [].constructor(15); let i = index;">
       <div class="item">
         <div class="variants w-50">
           <div class="variant-1">0</div>
@@ -11,7 +11,7 @@
           <span>{{579 | currency:'€'}}</span>
         </div>
         <div class="text-center">
-          <img src="../assets/img/item-{{i}}.png" class="img-fluid item-img" alt="item">
+          <img src="../assets/img/item-{{i%8}}.png" class="img-fluid item-img" alt="item">
           <div class="item-info">
             <div class="item-measurement text-muted">S 61 x 43 x 20 cm</div>
             <div class="item-name text-muted">Grijs TARSO1020</div>
@@ -27,4 +27,5 @@
     </div>
 
   </div>
+
 </div>
