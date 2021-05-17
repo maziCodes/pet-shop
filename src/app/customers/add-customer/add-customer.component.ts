@@ -64,10 +64,31 @@ export class AddCustomerComponent implements OnInit, OnDestroy {
     });
   }
 
+  fieldValid(fieldName: string, index: number = null) {
+    if (index != null) {
+      return (
+        (!this.form.get('openingHours')['controls'][index].get(fieldName).valid
+          && this.form.get('openingHours')['controls'][index].get(fieldName).touched)
+      );
+    } else {
+      return (
+        (!this.form.get(fieldName).valid && this.form.get(fieldName).touched)
+      );
+
+    }
+  }
+
+  displayFieldCss(field: string, index: number = null) {
+    return {
+      'has-error': this.fieldValid(field, index)
+    };
+  }
+
   saveCustomer() {
+    this.form.markAllAsTouched();
     this.toastr.clear(this.toastrId)
     if (this.form.invalid) {
-      this.toastrId = this.toastr.error(  `Alstublieft, vullen alle verplicht velden gemarkeerd met *`).toastId;
+      this.toastrId = this.toastr.error(  `Alstublieft, vullen alle verplicht velden`).toastId;
       return;
     }
     const newCustomer = this.form.value;
