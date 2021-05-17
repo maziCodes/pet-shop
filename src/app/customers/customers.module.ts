@@ -6,7 +6,13 @@ import { FilterCustomersComponent } from './filter-customers/filter-customers.co
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import {IConfig, NgxMaskModule} from "ngx-mask";
 
+const maskConfigFunction: () => Partial<IConfig> = () => {
+  return {
+    validation: false,
+  };
+};
 
 @NgModule({
   declarations: [
@@ -17,7 +23,8 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
   imports: [
     CommonModule,
     CustomersRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfigFunction),
   ]
 })
 export class CustomersModule { }
