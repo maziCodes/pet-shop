@@ -1,8 +1,17 @@
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(7, 100%);
-  overflow: scroll;
+  overflow-x: scroll;
   padding-top: 2em;
+  scroll-behavior: smooth;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.gallery-grid::-webkit-scrollbar {
+  width: 0;
 }
 
 .gallery-grid .item-container {
