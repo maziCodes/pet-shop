@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="col-md-8 col-12">
+  <div class="col-lg-8 col-12">
     <div class="card shadow border-0">
       <div class="card-body">
         <div class="d-flex justify-content-between mt-3 mb-4">
-          <div class="d-flex justify-content-between w-25">
+          <div class="d-flex justify-content-between form-title">
             <div>
               <h4>Nieuwe Klant</h4>
             </div>
@@ -21,15 +21,16 @@
             <div class="col-md-8">
               <div class="row">
                 <div class="col-1 form-icons-container">
-                  <label class="required pr-1"></label>
                   <label for="name">
                     <i class="fa fa-user form-icons user-icon"></i>
                   </label>
                 </div>
                 <div class="col-md-6 col-10">
                   <div class="row">
-                    <div class="col-12 ml-3 ml-md-0">
-                      <input type="text" formControlName="name" placeholder="Naam" id="name" class="w-100">
+                    <div class="col-12 ml-3">
+                      <input type="text" formControlName="name" placeholder="Naam" id="name" [ngClass]="displayFieldCss('name')" class="w-100">
+                      <field-error [hasError]="fieldValid('name')">
+                      </field-error>
                     </div>
 
                   </div>
@@ -39,21 +40,26 @@
 
               <div class="row mt-5">
                 <div class="col-1 form-icons-container">
-                  <label class="required pr-1"></label>
                   <label for="addressOne">
                     <i class="fa fa-map-marker form-icons map-marker-icon"></i>
                   </label>
                 </div>
                 <div class="col-md-6 col-10">
                   <div class="row">
-                    <div class="col-12 mb-3 ml-3 ml-md-0">
-                      <input required type="text" formControlName="addressOne" placeholder="Adreslijn1" id="addressOne" class="w-100">
+                    <div class="col-12 mb-3 ml-3 ">
+                      <input type="text" [ngClass]="displayFieldCss('addressOne')" formControlName="addressOne" placeholder="Adreslijn1" id="addressOne" class="w-100">
+                      <field-error [hasError]="fieldValid('addressOne')">
+                      </field-error>
                     </div>
-                    <div class="col-12 mb-3 ml-3 ml-md-0">
-                      <input type="text"  formControlName="addressTwo" placeholder="Adreslijn1" id="addressTwo" class="w-100">
+                    <div class="col-12 mb-3 ml-3 ">
+                      <input type="text" [ngClass]="displayFieldCss('addressTwo')" formControlName="addressTwo" placeholder="Adreslijn1" id="addressTwo" class="w-100">
+                      <field-error [hasError]="fieldValid('addressTwo')">
+                      </field-error>
                     </div>
-                    <div class="col-12 mb-3 ml-3 ml-md-0">
-                      <input type="text"  formControlName="postCode"  placeholder="Postcode - Gemeente"  id="postCode" class="w-100">
+                    <div class="col-12 mb-3 ml-3 ">
+                      <input type="text" [ngClass]="displayFieldCss('postCode')" formControlName="postCode"  placeholder="Postcode - Gemeente"  id="postCode" class="w-100">
+                      <field-error [hasError]="fieldValid('postCode')">
+                      </field-error>
                     </div>
                   </div>
 
@@ -69,8 +75,8 @@
                 </div>
                 <div class="col-md-6 col-10">
                   <div class="row">
-                    <div class="col-12 ml-3 ml-md-0">
-                      <input type="text" id="tel" formControlName="tel" placeholder="Tel" mask="(+000) 00-000-0000"  inputmode="numeric" class="w-100">
+                    <div class="col-12 ml-3 ">
+                      <input type="text" [ngClass]="displayFieldCss('tel')" id="tel" formControlName="tel" placeholder="Tel" mask="(+000) 00-000-0000"  inputmode="numeric" class="w-100">
                     </div>
 
                   </div>
@@ -79,17 +85,18 @@
               </div>
               <div class="row">
                 <div class="col-1 form-icons-container">
-                <label class="required pr-1"></label>
                   <label for="email">
                     <i class="fa fa-envelope form-icons email-icon"></i>
                   </label>
                 </div>
                 <div class="col-md-6 col-10">
                   <div class="row">
-                    <div class="col-12 ml-3 ml-md-0">
-                      <input type="text" id="email" placeholder="email" formControlName="email" class="w-100">
+                    <div class="col-12 ml-3 ">
+                      <input type="text" [ngClass]="displayFieldCss('email')" id="email" placeholder="email" formControlName="email" class="w-100">
+                      <field-error [hasError]="fieldValid('email')">
+                      </field-error>
                       <div>
-                        <small *ngIf="form.get('email').hasError('pattern')" class="text-danger">Ongeldige email formaat</small>
+                        <span *ngIf="form.get('email').hasError('pattern')" class="text-danger"><i class="fa fa-info"></i> Ongeldige email formaat</span>
                       </div>
                     </div>
 
@@ -102,19 +109,21 @@
 
             <div class="col-md-4 mt-5 mt-md-0">
               <div class="row">
-                <div class="col-1 col-md-2 form-icons-container">
+                <div class="col-1 form-icons-container">
                   <i class="fa fa-clock-o form-icons clock-icon"></i>
                 </div>
                 <div class="col-10">
                   <div class="row">
-                    <div class="col-12 ml-3 ml-md-0 mb-4" *ngFor="let control of openingHoursForm.controls; let i = index;">
+                    <div class="col-12 ml-3 mb-4" *ngFor="let control of openingHoursForm.controls; let i = index;">
                       <ng-container [formGroup]="control">
-                        <label for="{{'day'+i}}" class="pr-3 required">{{daysAndTime[i].dayOfWeek}}</label>
-                        <input formControlName="startTime" type="time" id="{{'day'+i}}" class="w-75">
+                        <label for="{{'day'+i}}" class="pr-3">{{daysAndTime[i].dayOfWeek}}</label>
+                        <input formControlName="startTime" [ngClass]="displayFieldCss('startTime', i)" type="time" id="{{'day'+i}}" class="w-75">
+                        <field-error [hasError]="fieldValid('startTime', i)">
+                        </field-error>
                       </ng-container>
-                    </div>
-                    <div class="col-11 text-center">
-                      <button type="submit" class="btn btn-outline-success w-75 font-weight-bold py-3 save-btn">VOEG TOE</button>
+                      <div *ngIf="i == (openingHoursForm.controls.length -1)" class="mt-5 text-center">
+                        <button type="submit" class="btn btn-outline-success w-75 font-weight-bold py-3 save-btn">VOEG TOE</button>
+                      </div>
                     </div>
 
                   </div>

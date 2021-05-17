@@ -7,6 +7,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import {IConfig, NgxMaskModule} from "ngx-mask";
+import {SharedModule} from "../shared/shared.module";
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -25,6 +26,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     CustomersRoutingModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfigFunction),
+    SharedModule
   ]
 })
 export class CustomersModule { }

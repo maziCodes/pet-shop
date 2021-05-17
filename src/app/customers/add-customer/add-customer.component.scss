@@ -1,0 +1,15 @@
+.form-title {
+  width: 60%;
+}
+
+.has-error {
+  box-shadow: 1px 1px 2px #e33e3ef5;
+  border-color: #a94442;
+  border-width: 2px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .form-title {
+    width: 25%;
+  }
+}
