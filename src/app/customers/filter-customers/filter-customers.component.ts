@@ -5,6 +5,7 @@ import {Customer} from "../../models/customer";
 import {customers} from "../../dummy-data/customers";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {PageManagerService} from "../../services/page-manager.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-filter-customers',
@@ -18,7 +19,8 @@ export class FilterCustomersComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private pageManagerService: PageManagerService
+    private pageManagerService: PageManagerService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,4 +43,7 @@ export class FilterCustomersComponent implements OnInit {
     });
   }
 
+  openCustomerDetails() {
+    this.router.navigate(['/customer/details']);
+  }
 }
