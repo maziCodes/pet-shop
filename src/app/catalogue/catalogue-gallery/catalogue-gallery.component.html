@@ -3,12 +3,12 @@
     <div class="col-md-3 mb-5 item-container" *ngFor="let item of [].constructor(50); let i = index;">
       <div class="item">
         <div class="variants w-50">
-          <div class="variant-1">0</div>
-          <div class="variant-2 ml-1 mr-1">0</div>
-          <div class="variant-3">23</div>
+          <div class="variant-1">{{((2*i)+1)}}</div>
+          <div class="variant-2 ml-1 mr-1">{{(1+i)}}</div>
+          <div class="variant-3">{{(2*i)}}</div>
         </div>
         <div class="price w-25">
-          <span>{{579 | currency:'€'}}</span>
+          <span>{{((5*i)+2) | currency:'€'}}</span>
         </div>
         <div class="text-center">
           <img src="../assets/img/item-{{i%8}}.png" class="img-fluid item-img" alt="item">
